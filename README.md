@@ -8,7 +8,7 @@ database. Functionality includes:
 * Post a comment
 * Edit / delete accounts, blogs, comments
 
-Users have to run command `flask init_db` to initiate the database 
+Users have to run command `flask initdb` to initiate the database 
 before using it.
 
 ## Browser Interface
