@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Blogs by {{author['username']}}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+  body {
+  margin-left: 20%;
+  }
+
+  #navbar {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #dddddd;
+  }
+
+  #link {
+  float: right;
+  display: block;
+  padding: 18px;
+  padding-bottom: 22.5px;
+  color: black;
+  text-decoration: none;
+  }
+
+  #link:hover {
+  background-color: #C0C0C0;
+  }
+
+  #blog_title {
+  float: left;
+  padding-left: 18px;
+  text-decoration: none;
+  }
+
+  #blog_title:visited {
+  color: black;
+  }
+
+  #blog_header {
+  list-style-type: none;
+  padding: 0;
+  overflow: hidden;
+  }
+
+  #title {
+  float: left;
+  font-size: 150%;
+  }
+
+  #time {
+  float: right;
+  padding-top: 10px;
+  }
+
+  #author {
+  color: black;
+  }
+
+  #author_menu {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  width: 15%;
+  background-color: #dddddd;
+  overflow: auto;
+  position: fixed;
+  }
+
+  #author_section {
+  display: block;
+  color: black;
+  padding: 8px 16px;
+  text-decoration: none;
+  }
+
+  #author_section:hover {
+  background-color: #C0C0C0;
+  }
+
+  #author_blog {
+  background-color: #dddddd;
+  color: black;
+  padding: 20px;
+  margin-top: 20px;
+  margin-left: 35%;
+  margin-right: 15%;
+  }
+  </style>
+</head>
+
+<body>
+<ul id="navbar">
+  <li><a id="blog_title" href="/"><h1 style="font-size:150%">The Blog</h1></a></li>
+  <li><a id="link" href="/logout">Log Out</a></li>
+  <li><a id="link" href="/authors/{{authors[0]['id']}}">Authors</a></li>
+</ul>
+
+<ul id="author_menu">
+  {% for au in authors %}
+  <li><a id="author_section" href="/authors/{{au['id']}}">{{au['username']}}</a></li>
+  {% endfor %}
+</ul>
+
+<h3 style="margin-left:35%; padding-bottom:20 px">Blogs by {{author['username']}}</h3>
+{% for blog in blogs %}
+
+<div id="author_blog">
+  <ul id="blog_header">
+  <li><h2 id="title">{{blog['title']}}</h2></li>
+  <li><p id="time">{{blog['time']}}</p></li>
+  </ul>
+
+  <p>By <a id="author" href="/authors/{{blog['author_id']}}">{{author['username']}}</a></p>
+  <p>{{blog['content']}}</p>
+  <a style="color:black;" href="/blogs/{{blog['id']}}">Go to blog</a>
+</div>
+{% endfor %}
+
+</body>
+
+</html>

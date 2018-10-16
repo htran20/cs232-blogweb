@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+  body {
+  margin-left: 20%;
+  margin-right: 20%;
+  }
+
+  #navbar {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #dddddd;
+  }
+
+  #link {
+  float: right;
+  display: block;
+  padding: 18px;
+  padding-bottom: 22.5px;
+  color: black;
+  text-decoration: none;
+  }
+
+  #link:hover {
+  background-color: #C0C0C0;
+  }
+
+  #blog_title {
+  float: left;
+  padding-left: 18px;
+  text-decoration: none;
+  }
+
+  #insert_blog {
+  margin-left: 100px;
+  margin-top: 20px;
+  }
+
+  #blog_header {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  }
+
+  #blog_title:visited {
+  color: black;
+  }
+
+  #title {
+  float: left;
+  font-size: 150%;
+  }
+
+  #time {
+  float: right;
+  padding-top: 10px;
+  }
+
+  #blog {
+  background-color:#dddddd;
+  color:black;
+  padding:20px;
+  margin-top:20px;
+  margin-left:100px;
+  margin-right:100px
+  }
+
+  #author {
+  color: black;
+  }
+</style>
+</head>
+
+<body>
+
+<ul id="navbar">
+  <li><a id="blog_title" href="/"><h1 style="font-size:150%">The Blog</h1></a></li>
+  <li><a id="link" href="/logout">Log Out</a></li>
+  <li><a id="link" href="/authors/{{author['id']}}">Authors</a></li>
+</ul>
+
+<form id="insert_blog" action="/" method="POST">
+  <textarea name="title" rows="1" cols="30">Title</textarea>
+  <br>
+  <textarea name="content" rows="5" cols="90">What do you want to say?</textarea>
+  <br>
+  <input type="Submit" value="Post">
+</form>
+
+{% for blog in blogs %}
+<div id="blog">
+  <ul id="blog_header">
+  <li><h2 id="title">{{blog['title']}}</h2></li>
+  <li><p id="time">{{blog['time']}}</p></li>
+  </ul>
+
+  <p>By <a id="author" href="/authors/{{blog['author_id']}}">{{blog['username']}}</a></p>
+  <p>{{blog['content']}}</p>
+  <a style="color:black;" href="/blogs/{{blog['id']}}">Go to blog</a>
+</div>
+{% endfor %}
+</body>
+</html>
